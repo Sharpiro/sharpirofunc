@@ -7,7 +7,10 @@ module.exports = function (context, req) {
     if (req.query.url || (req.body && req.body.url)) {
         realurl.get(req.query.url, function (error, result) {
             context.res = {
-                body: { url: result }
+                body: { url: result },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             };
             context.done();
         });
